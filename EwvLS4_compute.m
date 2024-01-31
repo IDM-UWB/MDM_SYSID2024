@@ -14,7 +14,7 @@ if L>timeShift % vectors overlap -> fourth moment is non-zero
 
 QRLSu = [kron(ones(L-1+timeShift,1),Qu);kron(ones(L+timeShift,1),Ru)];
 
-Q=sym(zeros(nw)); Q(triu(ones(nw))==1) = Qu; Q = Q+Q'-diag(diag(Q));
+Q=sym(zeros(nw)); Q(tril(ones(nw))==1) = Qu; Q = Q+Q'-diag(diag(Q));
 R=sym(zeros(nv)); R(tril(ones(nv))==1) = Ru; R = R+R'-diag(diag(R));
 QRL = blkdiag(kron(eye(L-1),Q),kron(eye(L),R));
 QRLS = blkdiag(kron(eye(L-1+timeShift),Q),kron(eye(L+timeShift),R));
